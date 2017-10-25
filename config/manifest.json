@@ -1,0 +1,160 @@
+{
+  "connections": [
+    {
+      "port": 9802,
+      "routes": {
+        "cors": {
+          "credentials": true,
+          "headers": ["Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language"]
+        },
+        "state" : {
+          "parse": true,
+          "failAction": "ignore"
+        },
+        "payload": {
+          "maxBytes": 10485760
+        }
+      },
+      "router": {
+        "stripTrailingSlash": true
+      }
+    }
+  ],
+  "registrations": [
+    {
+      "plugin": "./plugins/logger"
+    },
+    {
+      "plugin": "./plugins/environment"
+    },
+    {
+      "plugin": "hapi-auth-jwt2"
+    },
+    {
+      "plugin": "./auth"
+    },
+    {
+      "plugin": "./plugins/transTest"
+    },
+    {
+      "plugin": "./plugins/IDGenerator"
+    },
+    {
+      "plugin": "./plugins/codeGenerator"
+    },
+    {
+      "plugin": "./plugins/userIdGenerator"
+    },
+    {
+      "plugin": "./plugins/schedulePostscriptGenerator"
+    },
+    {
+      "plugin": "./plugins/socket"
+    },
+    {
+      "plugin": "./plugins/webSocket"
+    },
+    {
+      "plugin": "./plugins/marketBTC123"
+    },
+    {
+      "plugin": "./plugins/marketOkcoin"
+    },
+    {
+      "plugin": "./plugins/marketHuobi"
+    },
+    {
+      "plugin": "./plugins/marketChbtc"
+    },
+    {
+      "plugin": "./plugins/marketBtcchina"
+    },
+    {
+      "plugin": "./plugins/marketYunbi"
+    },
+    {
+      "plugin": "./plugins/marketBter"
+    },
+    {
+      "plugin": "./plugins/scheduleKLine"
+    },
+    {
+      "plugin": "./plugins/matchTrans"
+    },
+    {
+      "plugin": "./plugins/followInvest"
+    },
+    {
+      "plugin": "./plugins/commission"
+    },
+    {
+      "plugin": "./plugins/scheduleAssetsLog"
+    },
+    {
+      "plugin": "./plugins/scheduleProfitRate"
+    },
+    {
+      "plugin": "./plugins/persistentExchangeAndCoin"
+    },
+    {
+      "plugin": "./plugins/scheduleRiskLog"
+    },
+    {
+      "plugin": "./plugins/scheduleRisk"
+    },
+    {
+      "plugin": "./plugins/insertRobotUser"
+    },
+    {
+      "plugin": "./plugins/robot"
+    },
+    {
+      "plugin": "./api",
+      "options": {
+        "routes": {
+          "prefix": "/api"
+        }
+      }
+    },
+    {
+      "plugin": "./admin",
+      "options": {
+        "routes": {
+          "prefix": "/admin"
+        }
+      }
+    },
+    {
+      "plugin": {
+        "register": "good",
+        "options": {
+          "ops": {
+            "interval": 60000
+          },
+          "reporters": {
+            "console": [
+              {
+                "module": "good-squeeze",
+                "name": "Squeeze",
+                "args": [
+                  {
+                    "error": "*"
+                  }
+                ]
+              },
+              {
+                "module": "good-console"
+              },
+              "stdout"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "plugin": {
+        "register": "inert"
+      }
+    }
+  ]
+}
